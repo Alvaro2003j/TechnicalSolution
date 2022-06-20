@@ -6,6 +6,7 @@ import { SuscriptionsModule } from './suscriptions/suscriptions.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AccountsModule } from './accounts/accounts.module';
 import { TransactionsModule } from './transactions/transactions.module';
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -16,14 +17,14 @@ import { TransactionsModule } from './transactions/transactions.module';
       timezone: '+00:00',
       bigNumberStrings: false,
       entities: [
-        process.env.ENVIROMENT == 'prod' ?
-        '**/infrastructure/persistence/typeorm/entities/*{.ts,.js}' :
-        'dist/**/infrastructure/persistence/typeorm/entities/*{.ts, .js}'
+        process.env.ENVIRONMENT == 'prod' ? 
+        '**/infrastructure/persistence/typeorm/entities/*{.ts,.js}' : 
+        'dist/**/infrastructure/persistence/typeorm/entities/*{.ts,.js}'
       ],
       subscribers: [],
       migrations: [
-        process.env.ENVIROMENT == 'prod' ?
-        'common/infrastructure/persistence/typeorm/migrations/*{.ts,.js}' :
+        process.env.ENVIRONMENT == 'prod' ? 
+        'common/infrastructure/persistence/typeorm/migrations/*{.ts,.js}' : 
         'dist/common/infrastructure/persistence/typeorm/migrations/*{.ts,.js}'
       ],
       migrationsTableName: "migrations"
