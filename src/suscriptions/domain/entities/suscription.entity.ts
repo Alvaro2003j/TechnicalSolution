@@ -1,16 +1,15 @@
 import { AggregateRoot, IEvent } from '@nestjs/cqrs';
-import { Money } from '../../../common/domain/value-objects/money.value';
 import { SuscriptionRegistered } from '../events/suscription-registered.event';
 import { SuscriptionId } from '../value-object/suscription-id.value'
 import { SuscriptionType } from '../value-object/suscriptiontype.value';
 export class Suscription extends AggregateRoot {
   private id: SuscriptionId;
-  private Cost: Money;
-  private readonly Suscription_Type: SuscriptionType;
+  private Cost: number;
+  private Suscription_Type: SuscriptionType;
   private TimeSuscription: number;
   private Active: boolean;
 
-  public constructor(Cost: Money, Suscription_Type: SuscriptionType, TimeSuscription: number, Active: boolean)
+  public constructor(Cost: number, Suscription_Type: SuscriptionType, TimeSuscription: number, Active: boolean)
   {
     super();
     this.Cost = Cost;
@@ -20,7 +19,7 @@ export class Suscription extends AggregateRoot {
   }
 
   public Register() {
-    const event = new SuscriptionRegistered(this.id.getValue(), this.Suscription_Type.getNamePlan(), this.Cost.getAmount());
+    const event = new SuscriptionRegistered(this.id.getValue(), this.Suscription_Type.getNamePlan(), this.Cost);
     this.apply(event);
   }
 
@@ -40,7 +39,7 @@ export class Suscription extends AggregateRoot {
     return this.Cost;
   }
 
-  public setCost(value: Money)
+  public setCost(value: number)
   {
     this.Cost = value;
   }

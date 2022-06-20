@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Result } from 'typescript-result';
 import { AppNotification } from '../../../../common/application/app.notification';
-import { Money } from '../../../../common/domain/value-objects/money.value';
 import { SuscriptionId } from 'src/suscriptions/domain/value-object/suscription-id.value';
 import { Suscription } from 'src/suscriptions/domain/entities/suscription.entity';
 import { SuscriptionFactory } from 'src/suscriptions/domain/factories/suscription.factory';
@@ -28,7 +27,7 @@ export class RegisterSuscriptionHandler implements ICommandHandler<RegisterSuscr
         if (SuscriptionTypeResult.isFailure()){
             return suscriptionId;
         }
-        const cost: Money = Money.create(0, Currency.SOLES);
+        const cost: number = 0;
         const timeSuscription: number = 0;
         const active: boolean = false
         let suscription: Suscription = SuscriptionFactory.createFrom(cost, SuscriptionTypeResult.value, timeSuscription, active);

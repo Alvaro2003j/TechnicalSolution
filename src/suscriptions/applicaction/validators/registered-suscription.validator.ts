@@ -20,7 +20,7 @@ export class RegisterSuscriptionValidator {
         {
             return notification;
         }
-        suscriptionTypeORM = await this.suscriptionRepository.createQueryBuilder().where("type = :type", {type}).getOne();
+        const suscriptionTypeORM = await this.suscriptionRepository.createQueryBuilder().where("type = :type", {type}).getOne();
         if (suscriptionTypeORM != null)
         {
             notification.addError('Suscription type is taken', null)

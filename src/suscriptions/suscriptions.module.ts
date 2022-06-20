@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { SuscriptionController } from './api/suscriptions.controller';
 import { CqrsModule } from '@nestjs/cqrs';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { MoneyTransferredHandler } from './application/handlers/events/money-transferred.handler';
 import { RegisterSuscriptionHandler } from './applicaction/handlers/commands/register-suscription.handler';
 import { SuscriptionRegisteredHandler } from './applicaction/handlers/events/suscription-registered.handler';
 import { SuscriptionTypeORM } from './infrastructure/persistence/typeorm/entities/suscription.typeorm';

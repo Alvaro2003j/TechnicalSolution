@@ -22,7 +22,7 @@ export class SuscriptionController {
         @Res({passthrough: true}) response
     ): Promise<object> {
         try{
-            const result: Result<AppNotification, RegisterSuscriptionResponse> = await this.suscriptionApplicationService.open(registeredSuscriptionRequest);
+            const result: Result<AppNotification, RegisterSuscriptionResponse> = await this.suscriptionApplicationService.register(registeredSuscriptionRequest);
             if (result.isSuccess())
             {
                 return ApiController.created(response, result.value);
