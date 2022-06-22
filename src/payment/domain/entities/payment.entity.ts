@@ -1,6 +1,6 @@
 import { AggregateRoot } from "@nestjs/cqrs"
 import { CompanyName } from "src/common/domain/value-objects/company-name.value";
-import { Suscription } from "src/suscriptions/domain/entities/suscription.entity";
+import { SuscriptionId } from "src/suscriptions/domain/value-object/suscription-id.value";
 import { PaymentRegistered } from "../events/payment-registered.event";
 import { PaymentId } from "../value-object/payment-id.value";
 import { PaymentType } from "../value-object/payment-type.value";
@@ -9,16 +9,16 @@ export class Payment extends AggregateRoot {
     private id: PaymentId;
     private enterprise: CompanyName;
     private paymentType: PaymentType;
-    private suscription: Suscription;
+    private suscriptionId: SuscriptionId;
     private date: string;
     private amount: number;
 
-    public constructor(enterprise: CompanyName, paymentType: PaymentType, suscription: Suscription, date: string, amount: number)
+    public constructor(enterprise: CompanyName, paymentType: PaymentType, suscriptionId: SuscriptionId, date: string, amount: number)
     {
         super();
         this.enterprise = enterprise;
         this.paymentType = paymentType;
-        this.suscription = suscription;
+        this.suscriptionId = suscriptionId;
         this.date = date;
         this.amount = amount;
     }
@@ -48,14 +48,14 @@ export class Payment extends AggregateRoot {
         this.enterprise = enterprise;
     }
 
-    public getSuscription(): Suscription
+    public getSuscriptionId(): SuscriptionId
     {
-        return this.suscription;
+        return this.suscriptionId;
     }
 
-    public setSuscription(suscription: Suscription)
+    public setSuscriptionId(suscriptionId: SuscriptionId)
     {
-        this.suscription = suscription;
+        this.suscriptionId = suscriptionId;
     }
 
     public getDate(): string
