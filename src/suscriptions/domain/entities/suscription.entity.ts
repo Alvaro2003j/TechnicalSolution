@@ -24,9 +24,9 @@ export class Suscription extends AggregateRoot {
   }
 
   //Getter and Setter Cost
-  public getId()
+  public getId(): number
   {
-    return this.id;
+    return this.id.getValue();
   }
 
   public setId(value: SuscriptionId)
@@ -34,7 +34,7 @@ export class Suscription extends AggregateRoot {
     this.id = value;
   }
   //Getter and Setter Cost
-  public getCost()
+  public getCost(): number
   {
     return this.Cost;
   }
@@ -45,7 +45,7 @@ export class Suscription extends AggregateRoot {
   }
 
   //Getter and Setter Suscription_Type
-  public getSuscription_Type()
+  public getSuscription_Type(): SuscriptionType
   {
     return this.Suscription_Type;
   }
@@ -56,7 +56,7 @@ export class Suscription extends AggregateRoot {
   }
 
   //Getter and Setter TimeSuscription
-  public getTimeSuscription()
+  public getTimeSuscription(): number
   {
     return this.TimeSuscription;
   }
@@ -67,7 +67,7 @@ export class Suscription extends AggregateRoot {
   }
 
   //Getter and Setter Active
-  public getActive()
+  public getActive(): boolean
   {
     return this.Active;
   }

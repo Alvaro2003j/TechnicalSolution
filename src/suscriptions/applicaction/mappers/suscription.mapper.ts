@@ -9,7 +9,7 @@ export class SuscriptionMapper {
     public static toTypeORM(suscription: Suscription): SuscriptionTypeORM 
     {
         const suscriptionTypeORM: SuscriptionTypeORM = new SuscriptionTypeORM();
-        suscriptionTypeORM.id = suscription.getId() != null ? suscription.getId().getValue() : 0;
+        suscriptionTypeORM.id = suscription.getId() != null ? suscription.getId() : 0;
         suscriptionTypeORM.cost = suscription.getCost() != null ? SuscriptionCostTypeORM.from(suscription.getCost()) : null;
         suscriptionTypeORM.type_suscription = suscription.getSuscription_Type() != null ? SuscriptionTypeTypeORM.from(suscription.getSuscription_Type().getNamePlan()) : null;
         suscriptionTypeORM.time = suscription.getTimeSuscription() != null ? TimeSuscriptionTypeORM.from(suscription.getTimeSuscription()) : null;

@@ -1,7 +1,7 @@
 import { Column, Unique } from 'typeorm';
 
 export class SuscriptionCostTypeORM {
-    @Column('number', {name: 'cost', nullable: false})
+    @Column('decimal', {name: 'cost', nullable: false})
     value: number;
 
     private constructor(value: number)
