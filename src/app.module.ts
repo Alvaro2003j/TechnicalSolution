@@ -11,7 +11,7 @@ import { TransactionsModule } from './transactions/transactions.module';
   imports: [
     TypeOrmModule.forRoot({
       type: "mysql",
-      url: process.env.BANKING_DDD_NEST_MYSQL,
+      url: process.env.TECHNICAL_SOLUTION,
       migrationsRun: true,
       logging: true,
       timezone: '+00:00',

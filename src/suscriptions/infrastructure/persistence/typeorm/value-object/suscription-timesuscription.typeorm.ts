@@ -1,7 +1,7 @@
 import { Column } from "typeorm";
 
 export class TimeSuscriptionTypeORM {
-    @Column('number', {name: 'time-suscription', nullable: false})
+    @Column('int', {name: 'time-suscription', nullable: false})
     value: number;
 
     private constructor(value: number)
