@@ -25,7 +25,7 @@ export class Payment extends AggregateRoot {
 
     public Pay()
     {
-        const event = new PaymentRegistered(this.id.getValue(), this.paymentType.getType(), this.amount);
+        const event = new PaymentRegistered(this.id.getValue(), this.paymentType.getType(), this.amount, this.suscriptionId.getValue());
         this.apply(event);
     }
 
