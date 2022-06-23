@@ -6,7 +6,7 @@ import { PaymentType } from "../value-object/payment-type.value";
 
 export class PaymentFactory {
     public static createFrom(enterprise: CompanyName, paymentType: PaymentType, suscriptionId: SuscriptionId, date: string, amount: number){
-        return new Payment(enterprise, paymentType, suscription, date, amount);
+        return new Payment(enterprise, paymentType, suscriptionId, date, amount);
     }
     public static withId(paymentId: PaymentId, enterprise: CompanyName, paymentType: PaymentType, suscriptionId: SuscriptionId, date: string, amount: number): Payment
     {

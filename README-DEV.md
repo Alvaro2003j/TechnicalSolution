@@ -1,16 +1,19 @@
 # ACME Banking
 
 ## Description
+
 Domain-Driven Design example using [Nest](https://github.com/nestjs/nest) framework.
 Persistence layer is implemented using [TypeORM](https://typeorm.io/) with MySQL Database.
 Object Mapping is based on [AutoMapper TypeScript](https://automapperts.netlify.app/).
 
 ## Requisites
+
 - https://dev.mysql.com/downloads/mysql
 - https://www.mysql.com/products/workbench
 - https://nestjs.com/
 
 ## Install NestJS
+
 ```
 $ npm i -g @nestjs/cli
 $ nest --version
@@ -32,7 +35,9 @@ $ npm i --save-dev ts-node @types/node npm-run-all
 ```
 
 ## Scripts at package.json
+
 Add typeorm command under scripts section in package.json
+
 ```
 "scripts": {
     ...
@@ -50,10 +55,11 @@ $ nest g resource customers
 
 ```
 BANKING_DDD_NEST_MYSQL=mysql://{user}:{password}@{host}:{port}/{database}
-BANKING_DDD_NEST_MYSQL=mysql://root:root@localhost:3306/banking-ddd-nest
+BANKING_DDD_NEST_MYSQL=mysql://root:admin@localhost:3306/banking-ddd-nest
 ENVIRONMENT=local
 ENVIRONMENT=prod
 ```
+
 Note: Password must be URL encoded, %25 is the url encoding of %.
 
 ## Fix issue with MySQL 8
@@ -72,6 +78,7 @@ FLUSH PRIVILEGES;
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root'
 FLUSH PRIVILEGES;
 ```
+
 ## Migrations
 
 ```
