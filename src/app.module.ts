@@ -6,6 +6,7 @@ import { SuscriptionsModule } from './suscriptions/suscriptions.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AccountsModule } from './accounts/accounts.module';
 import { TransactionsModule } from './transactions/transactions.module';
+import { RequestsModule } from './requests/request.module';
 
 @Module({
   imports: [
@@ -32,7 +33,8 @@ import { TransactionsModule } from './transactions/transactions.module';
     ClientsModule,
     AccountsModule,
     SuscriptionsModule,
-    TransactionsModule
+    TransactionsModule,
+    RequestsModule
   ],
   controllers: [AppController],
   providers: [AppService],
