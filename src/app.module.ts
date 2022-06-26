@@ -1,11 +1,8 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ClientsModule } from './clients/clients.module';
 import { SuscriptionsModule } from './suscriptions/suscriptions.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AccountsModule } from './accounts/accounts.module';
-import { TransactionsModule } from './transactions/transactions.module';
 
 @Module({
   imports: [
@@ -29,10 +26,7 @@ import { TransactionsModule } from './transactions/transactions.module';
       ],
       migrationsTableName: "migrations"
     }),
-    ClientsModule,
-    AccountsModule,
     SuscriptionsModule,
-    TransactionsModule
   ],
   controllers: [AppController],
   providers: [AppService],
