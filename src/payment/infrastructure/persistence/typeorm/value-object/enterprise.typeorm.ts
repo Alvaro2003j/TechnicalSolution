@@ -8,7 +8,7 @@ export class EnterpriseTypeORM{
     {
         this.value = value;
     }
-    public static(value: string): EnterpriseTypeORM
+    public static from(value: string): EnterpriseTypeORM
     {
         return new EnterpriseTypeORM(value);
     }
