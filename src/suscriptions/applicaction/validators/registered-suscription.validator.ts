@@ -11,7 +11,7 @@ export class RegisterSuscriptionValidator {
 
     public async validate(registerSuscriptionRequestDto: RegisteredSuscriptionRequest) : Promise<AppNotification> {
         let notification: AppNotification = new AppNotification();
-        const type: string = registerSuscriptionRequestDto.type.trim();
+        const type: string = registerSuscriptionRequestDto.typeSuscription;
         if (type.length <= 0) 
         {
             notification.addError('Suscription type is required', null);
@@ -20,8 +20,8 @@ export class RegisterSuscriptionValidator {
         {
             return notification;
         }
-        const suscriptionTypeORM = await this.suscriptionRepository.createQueryBuilder().where("type = :type", {type}).getOne();
-        if (suscriptionTypeORM != null)
+        const suscriptionTypeORM: SuscriptionTypeORM = await this.suscriptionRepository.createQueryBuilder().where("type = :type", {type}).getOne();
+        if (suscriptionTypeORM == null)
         {
             notification.addError('Suscription type is taken', null)
         }

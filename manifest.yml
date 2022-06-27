@@ -1,7 +1,7 @@
 ---
 applications:
   - name: technical-solution
-    memory: 512MB
+    memory: 128MB
     instances: 1
     buildpacks:
       - nodejs_buildpack

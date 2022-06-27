@@ -11,10 +11,9 @@ export class SuscriptionMapper {
         const suscriptionTypeORM: SuscriptionTypeORM = new SuscriptionTypeORM();
         suscriptionTypeORM.id = suscription.getId() != null ? suscription.getId() : 0;
         suscriptionTypeORM.cost = suscription.getCost() != null ? SuscriptionCostTypeORM.from(suscription.getCost()) : null;
-        suscriptionTypeORM.type_suscription = suscription.getSuscription_Type() != null ? SuscriptionTypeTypeORM.from(suscription.getSuscription_Type().getNamePlan()) : null;
-        suscriptionTypeORM.time = suscription.getTimeSuscription() != null ? TimeSuscriptionTypeORM.from(suscription.getTimeSuscription()) : null;
         suscriptionTypeORM.active = suscription.getActive() != null ? ActiveTypeORM.from(suscription.getActive()) : null;
-
+        suscriptionTypeORM.timeSuscription = suscription.getTimeSuscription() != null ? TimeSuscriptionTypeORM.from(suscription.getTimeSuscription()) : null;
+        suscriptionTypeORM.typeSuscription = suscription.getSuscription_Type() != null ? SuscriptionTypeTypeORM.from(suscription.getSuscription_Type().getNamePlan()) : null;
         return suscriptionTypeORM;
     }
 }

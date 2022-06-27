@@ -1,1 +1,3 @@
-export class GetSuscriptionsQuery {}
+export class GetSuscriptionsQuery {
+
+}
