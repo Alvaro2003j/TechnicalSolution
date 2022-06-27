@@ -18,7 +18,7 @@ https://github.com/cloudfoundry/cli/releases
 $ cf login
 API endpoint: https://api.us-south.cf.cloud.ibm.com
 Email: pcsiebau@upc.edu.pe
-Password: YourStrongPasswordHere
+Password: IBMCloudUPC2021
 ```
 
 ## Deployment
@@ -29,7 +29,10 @@ $ cd dist
 $ cf push --no-start
 
 $ cf set-env banking-ddd-nest-ebautista ENVIRONMENT prod
-$ cf set-env banking-ddd-nest-ebautista BANKING_DDD_NEST_MYSQL mysql://admin:adminadmin@mysql8.cselj9r9ujlf.us-east-2.rds.amazonaws.com:3306/banking-ddd-nest
+$ cf set-env banking-ddd-nest-ebautista BANKING_DDD_NEST_MYSQL mysql://admin:9lAzuWBCwMJZfqGlxAwC@mysql8.cselj9r9ujlf.us-east-2.rds.amazonaws.com:3306/banking-ddd-nest
+
+cf set-env technical-solution ENVIRONMENT prod
+$ cf set-env technical-solution TECHNICAL_SOLUTION mysql://admin:9lAzuWBCwMJZfqGlxAwC@mysql8.cselj9r9ujlf.us-east-2.rds.amazonaws.com:3306/technical-solution
 
 $ cf env BANKING_DDD_NEST_MYSQL
 $ cf env ENVIRONMENT
