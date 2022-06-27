@@ -12,7 +12,11 @@ import { GetSuscriptionByIdHandler } from './applicaction/handlers/queries/get-s
 
 export const CommandHandlers = [RegisterSuscriptionHandler];
 export const EventHandlers = [SuscriptionRegisteredHandler];
-export const QueryHandlers = [GetSuscriptionsHandler, GetSuscriptionByIdHandler];
+export const QueryHandlers = [
+  GetSuscriptionsHandler,
+  GetSuscriptionByIdHandler,
+];
+export const Validators = [RegisterSuscriptionValidator];
 
 @Module({
     imports: [
@@ -22,7 +26,7 @@ export const QueryHandlers = [GetSuscriptionsHandler, GetSuscriptionByIdHandler]
     controllers: [SuscriptionController],
     providers: [
         SuscriptionApplicationService,
-        RegisterSuscriptionValidator,
+        ...Validators,
         ...CommandHandlers,
         ...EventHandlers,
         ...QueryHandlers

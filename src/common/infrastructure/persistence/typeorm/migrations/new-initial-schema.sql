@@ -4,6 +4,16 @@ CREATE TABLE IF NOT EXISTS suscriptions(
   active BOOLEAN NULL DEFAULT 0,
   time_suscription_days INT NULL, 
   type_suscription VARCHAR(10) NULL,
+  PRIMARY KEY(id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE IF NOT EXISTS payments(
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  company VARCHAR(20) NULL,
+  type_payment VARCHAR(15) NULL,
+  suscription_id BIGINT UNSIGNED NOT NULL, 
+  pay_date VARCHAR(8) NULL,
+  amount DECIMAL(10,2) NULL,
   PRIMARY KEY(id),
-  UNIQUE KEY UQ_suscription_name(type_suscription)
+  CONSTRAINT FK_payment_suscription_id FOREIGN KEY(suscription_id) REFERENCES suscriptions(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
