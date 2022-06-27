@@ -4,9 +4,8 @@ import { AppService } from './app.service';
 import { ClientsModule } from './clients/clients.module';
 import { SuscriptionsModule } from './suscriptions/suscriptions.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AccountsModule } from './accounts/accounts.module';
-import { TransactionsModule } from './transactions/transactions.module';
 import { RequestsModule } from './requests/request.module';
+import { PaymentsModule } from './payment/payment.module';
 
 @Module({
   imports: [
@@ -31,9 +30,9 @@ import { RequestsModule } from './requests/request.module';
       migrationsTableName: "migrations"
     }),
     ClientsModule,
-    AccountsModule,
     SuscriptionsModule,
-    TransactionsModule,
+    SuscriptionsModule,
+    PaymentsModule,
     RequestsModule
   ],
   controllers: [AppController],

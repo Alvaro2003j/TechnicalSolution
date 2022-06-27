@@ -7,13 +7,13 @@ import { PaymentType } from "../value-object/payment-type.value";
 
 export class Payment extends AggregateRoot {
     private id: PaymentId;
-    private enterprise: CompanyName;
+    private enterprise: string;
     private paymentType: PaymentType;
     private suscriptionId: SuscriptionId;
     private date: string;
     private amount: number;
 
-    public constructor(enterprise: CompanyName, paymentType: PaymentType, suscriptionId: SuscriptionId, date: string, amount: number)
+    public constructor(enterprise: string, paymentType: PaymentType, suscriptionId: SuscriptionId, date: string, amount: number)
     {
         super();
         this.enterprise = enterprise;
@@ -23,7 +23,7 @@ export class Payment extends AggregateRoot {
         this.amount = amount;
     }
 
-    public Pay()
+    public register()
     {
         const event = new PaymentRegistered(this.id.getValue(), this.paymentType.getType(), this.amount, this.suscriptionId.getValue());
         this.apply(event);
@@ -38,12 +38,12 @@ export class Payment extends AggregateRoot {
         this.id = id;
     }
 
-    public getEnterprise(): CompanyName
+    public getEnterprise(): string
     {
         return this.enterprise;
     }
 
-    public setEnterprise(enterprise: CompanyName)
+    public setEnterprise(enterprise: string)
     {
         this.enterprise = enterprise;
     }
@@ -68,9 +68,14 @@ export class Payment extends AggregateRoot {
         this.date = date;
     }
 
-    public getAmount(amount: number)
+    public getAmount() : number
     {
-        this.amount = amount;
+       return this.amount;
+    }
+
+    public setAmount(amount: number)
+    {
+       this.amount = amount;
     }
 
 }

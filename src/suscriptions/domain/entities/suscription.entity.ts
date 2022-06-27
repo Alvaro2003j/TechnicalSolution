@@ -4,9 +4,13 @@ import { SuscriptionId } from '../value-object/suscription-id.value'
 import { SuscriptionType } from '../value-object/suscriptiontype.value';
 export class Suscription extends AggregateRoot {
   private id: SuscriptionId;
+  
   private Cost: number;
+  
   private Suscription_Type: SuscriptionType;
+ 
   private TimeSuscription: number;
+  
   private Active: boolean;
 
   public constructor(Cost: number, Suscription_Type: SuscriptionType, TimeSuscription: number, Active: boolean)

@@ -7,10 +7,16 @@ import { SuscriptionRegisteredHandler } from './applicaction/handlers/events/sus
 import { SuscriptionTypeORM } from './infrastructure/persistence/typeorm/entities/suscription.typeorm';
 import { SuscriptionApplicationService } from './applicaction/services/suscription-application.service';
 import { RegisterSuscriptionValidator } from './applicaction/validators/registered-suscription.validator';
+import { GetSuscriptionsHandler } from './applicaction/handlers/queries/get-suscriptions.handler';
+import { GetSuscriptionByIdHandler } from './applicaction/handlers/queries/get-suscription-by-id.handler';
 
 export const CommandHandlers = [RegisterSuscriptionHandler];
 export const EventHandlers = [SuscriptionRegisteredHandler];
-export const QueryHandlers = [];
+export const QueryHandlers = [
+  GetSuscriptionsHandler,
+  GetSuscriptionByIdHandler,
+];
+export const Validators = [RegisterSuscriptionValidator];
 
 @Module({
     imports: [
@@ -20,7 +26,7 @@ export const QueryHandlers = [];
     controllers: [SuscriptionController],
     providers: [
         SuscriptionApplicationService,
-        RegisterSuscriptionValidator,
+        ...Validators,
         ...CommandHandlers,
         ...EventHandlers,
         ...QueryHandlers

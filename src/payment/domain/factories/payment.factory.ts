@@ -5,10 +5,10 @@ import { PaymentId } from "../value-object/payment-id.value";
 import { PaymentType } from "../value-object/payment-type.value";
 
 export class PaymentFactory {
-    public static createFrom(enterprise: CompanyName, paymentType: PaymentType, suscriptionId: SuscriptionId, date: string, amount: number){
+    public static createFrom(enterprise: string, paymentType: PaymentType, suscriptionId: SuscriptionId, date: string, amount: number){
         return new Payment(enterprise, paymentType, suscriptionId, date, amount);
     }
-    public static withId(paymentId: PaymentId, enterprise: CompanyName, paymentType: PaymentType, suscriptionId: SuscriptionId, date: string, amount: number): Payment
+    public static withId(paymentId: PaymentId, enterprise: string, paymentType: PaymentType, suscriptionId: SuscriptionId, date: string, amount: number): Payment
     {
         let payment: Payment = new Payment(enterprise, paymentType, suscriptionId, date, amount);
         payment.setId(paymentId);

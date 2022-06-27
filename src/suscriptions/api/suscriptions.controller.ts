@@ -8,7 +8,16 @@ import { RegisterSuscriptionResponse } from '../applicaction/dtos/response/regis
 import { SuscriptionApplicationService } from '../applicaction/services/suscription-application.service';
 import { GetSuscriptionsQuery } from '../applicaction/queries/get-suscriptions-query';
 import { GetSuscriptionByIdQuery } from '../applicaction/queries/get-suscription-by-id.query';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
+import { GetSuscriptionsDto } from '../applicaction/dtos/queries/get-suscriptions.dto';
 
+@ApiBearerAuth()
+@ApiTags('suscriptions')
 @Controller('suscriptions')
 export class SuscriptionController {
     constructor(
@@ -17,6 +26,12 @@ export class SuscriptionController {
     ) {}
 
     @Post()
+    @ApiOperation({ summary: 'Create new suscription'})
+    @ApiResponse({
+        status: 201,
+        description: 'Suscription created',
+        type: GetSuscriptionsDto,
+    })
     async register(
         @Body() registeredSuscriptionRequest: RegisteredSuscriptionRequest,
         @Res({passthrough: true}) response
@@ -36,6 +51,13 @@ export class SuscriptionController {
     }
 
     @Get()
+    @ApiOperation({ summary: 'Get all suscriptions'})
+    @ApiResponse({
+        status: 200,
+        description: 'All suscriptions returned',
+        type: GetSuscriptionsDto,
+        isArray: true,
+    })
     async getSuscriptions(@Res({passthrough: true}) response) : Promise<object> 
     {
         try
@@ -50,6 +72,12 @@ export class SuscriptionController {
     }
 
     @Get('/:id')
+    @ApiOperation({ summary: 'Get suscription by id'})
+    @ApiResponse({
+        status: 200,
+        description: 'Suscription returned',
+        type: GetSuscriptionsDto,
+    })
     async getById(@Param('id') suscriptionId: number, @Res({passthrough: true}) response) : Promise<object>
     {
         try 

@@ -16,8 +16,8 @@ export class SuscriptionTypeORM {
     public active: ActiveTypeORM;
 
     @Column((type) => TimeSuscriptionTypeORM, {prefix: false})
-    public time: TimeSuscriptionTypeORM;
+    public timeSuscription: TimeSuscriptionTypeORM;
 
     @Column((type) => SuscriptionTypeTypeORM, {prefix: false})
-    public type_suscription: SuscriptionTypeTypeORM;
+    public typeSuscription: SuscriptionTypeTypeORM;
 }
