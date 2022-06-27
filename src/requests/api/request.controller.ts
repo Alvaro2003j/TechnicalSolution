@@ -8,7 +8,10 @@ import { RegisterRequestResponse } from '../application/dtos/response/registered
 import { RequestApplicationService } from '../application/services/request-application.service';
 import { GetRequestsQuery } from '../application/queries/get-request-query';
 import { GetRequestByIdQuery } from '../application/queries/get-request-by-id.query';
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
+@ApiBearerAuth()
+@ApiTags('request')
 @Controller('request')
 export class RequestController {
     constructor(
@@ -17,6 +20,11 @@ export class RequestController {
     ) {}
 
     @Post()
+    @ApiOperation({ summary: 'Create new request'})
+    @ApiResponse({
+        status: 201,
+        description: 'Request created',
+    })
     async register(
         @Body() registeredRequestRequest: RegisteredRequestRequest,
         @Res({passthrough: true}) response
@@ -36,6 +44,12 @@ export class RequestController {
     }
 
     @Get()
+    @ApiOperation({ summary: 'Get all requests'})
+    @ApiResponse({
+        status: 200,
+        description: 'All requests returned',
+        isArray: true,
+    })
     async getRequests(@Res({passthrough: true}) response) : Promise<object> 
     {
         try
@@ -50,6 +64,11 @@ export class RequestController {
     }
 
     @Get('/:id')
+    @ApiOperation({ summary: 'Get request by id'})
+    @ApiResponse({
+        status: 200,
+        description: 'Request returned',
+    })
     async getById(@Param('id') requestId: number, @Res({passthrough: true}) response) : Promise<object>
     {
         try 

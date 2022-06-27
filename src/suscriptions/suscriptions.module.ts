@@ -19,17 +19,14 @@ export const QueryHandlers = [
 export const Validators = [RegisterSuscriptionValidator];
 
 @Module({
-    imports: [
-        CqrsModule,
-        TypeOrmModule.forFeature([SuscriptionTypeORM]),
-    ],
-    controllers: [SuscriptionController],
-    providers: [
-        SuscriptionApplicationService,
-        ...Validators,
-        ...CommandHandlers,
-        ...EventHandlers,
-        ...QueryHandlers
-    ]
+  imports: [CqrsModule, TypeOrmModule.forFeature([SuscriptionTypeORM])],
+  controllers: [SuscriptionController],
+  providers: [
+    SuscriptionApplicationService,
+    ...Validators,
+    ...CommandHandlers,
+    ...EventHandlers,
+    ...QueryHandlers,
+  ],
 })
 export class SuscriptionsModule {}

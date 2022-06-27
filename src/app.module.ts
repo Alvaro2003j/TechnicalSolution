@@ -6,6 +6,8 @@ import { SuscriptionsModule } from './suscriptions/suscriptions.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { RequestsModule } from './requests/request.module';
 import { PaymentsModule } from './payment/payment.module';
+import { NotificationModule } from './notification/notification.module';
+import { ClaimsModule } from './claim/claims.module';
 
 @Module({
   imports: [
@@ -31,7 +33,7 @@ import { PaymentsModule } from './payment/payment.module';
     }),
     ClientsModule,
     SuscriptionsModule,
-    SuscriptionsModule,
+    ClaimsModule,
     PaymentsModule,
     RequestsModule
   ],
