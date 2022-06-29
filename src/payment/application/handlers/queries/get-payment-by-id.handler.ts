@@ -1,15 +1,15 @@
 import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
-import { getManager } from "typeorm";
+import { DataSource } from "typeorm";
 import { GetPaymentsDto } from "../../dtos/queries/get-payment.dto";
 import { GetPaymentsByIdQuery } from "../../queries/get-payments-by-id.query";
 
 @QueryHandler(GetPaymentsByIdQuery)
 export class GetPaymentByIdHandler implements IQueryHandler<GetPaymentsByIdQuery>
 {
-    constructor() {}
+    constructor(private dataSource: DataSource) {}
 
     async execute(query: GetPaymentsByIdQuery): Promise<any> {
-        const manager = getManager();
+        const manager = this.dataSource.createEntityManager();
         const sql = ` 
         SELECT
          p.id,

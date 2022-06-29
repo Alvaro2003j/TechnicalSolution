@@ -2,7 +2,7 @@ import { CommandBus, IEventHandler } from '@nestjs/cqrs';
 import { EventsHandler } from '@nestjs/cqrs/dist/decorators/events-handler.decorator';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AccountTypeORM } from '../../../infrastructure/persistence/typeorm/entities/account.typeorm';
-import { getManager, Repository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 import { AccountMapper } from '../../mappers/account.mapper';
 import { Account } from '../../../domain/entities/account.entity';
 import { Result } from 'typescript-result';
@@ -20,6 +20,7 @@ import { MoneyTransferService } from 'src/accounts/domain/services/money-transfe
 @EventsHandler(MoneyTransferred)
 export class MoneyTransferredHandler implements IEventHandler<MoneyTransferred> {
   constructor(
+    private dataSource: DataSource,
     private readonly moneyTransferService: MoneyTransferService,
     @InjectRepository(AccountTypeORM)
     private accountRepository: Repository<AccountTypeORM>,
@@ -71,7 +72,7 @@ export class MoneyTransferredHandler implements IEventHandler<MoneyTransferred> 
     fromAccountTypeORM = AccountMapper.toTypeORM(fromAccount);
     toAccountTypeORM = AccountMapper.toTypeORM(toAccount);
 
-    await getManager().transaction(async transactionalEntityManager => {
+    await this.dataSource.createEntityManager().transaction(async transactionalEntityManager => {
       await transactionalEntityManager.save(fromAccountTypeORM);
       await transactionalEntityManager.save(toAccountTypeORM);
       if (fromAccountTypeORM == null || toAccountTypeORM == null) {
