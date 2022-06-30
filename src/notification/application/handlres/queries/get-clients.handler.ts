@@ -1,13 +1,13 @@
 import { IQueryHandler } from "@nestjs/cqrs";
-import { getManager } from "typeorm";
+import { DataSource } from "typeorm";
 import { GetNotificationsDto } from "../../dtos/queries/get-notifications.dto";
 import { GetNotificationsQuery } from "../../queries/get-notification-query";
 
 export class GetNotificationsHandler implements IQueryHandler<GetNotificationsQuery> {
-    constructor() {}
+    constructor(private dataSource: DataSource) {}
 
     async execute(query: GetNotificationsQuery) {
-        const manager = getManager();
+        const manager = this.dataSource.createEntityManager();
 
         const sql = `
         SELECT

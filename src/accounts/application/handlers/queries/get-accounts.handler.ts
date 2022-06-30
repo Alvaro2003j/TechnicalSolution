@@ -1,14 +1,14 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { getManager } from 'typeorm';
+import { DataSource } from 'typeorm';
 import { GetAccountsQuery } from '../../queries/get-accounts.query';
 import { GetAccountsDto } from '../../dtos/queries/get-accounts.dto';
 
 @QueryHandler(GetAccountsQuery)
 export class GetAccountsHandler implements IQueryHandler<GetAccountsQuery> {
-  constructor() {}
+  constructor(private dataSource: DataSource) {}
 
   async execute(query: GetAccountsQuery) {
-    const manager = getManager();
+    const manager = this.dataSource.createEntityManager();
     const sql = `
     SELECT
       a.id,

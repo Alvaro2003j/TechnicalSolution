@@ -3,7 +3,7 @@ import { EventsHandler } from '@nestjs/cqrs/dist/decorators/events-handler.decor
 import { MoneyDeposited } from '../../../../transactions/domain/events/money-deposited.event';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AccountTypeORM } from '../../../infrastructure/persistence/typeorm/entities/account.typeorm';
-import { getManager, Repository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 import { AccountMapper } from '../../mappers/account.mapper';
 import { Account } from '../../../domain/entities/account.entity';
 import { Result } from 'typescript-result';
@@ -19,6 +19,7 @@ import { CompleteTransaction } from '../../../../transactions/application/comman
 @EventsHandler(MoneyDeposited)
 export class MoneyDepositedHandler implements IEventHandler<MoneyDeposited> {
   constructor(
+    private dataSource: DataSource,
     @InjectRepository(AccountTypeORM)
     private accountRepository: Repository<AccountTypeORM>,
     private commandBus: CommandBus
@@ -47,7 +48,7 @@ export class MoneyDepositedHandler implements IEventHandler<MoneyDeposited> {
       return;
     }
     accountTypeORM = AccountMapper.toTypeORM(account);
-    await getManager().transaction(async transactionalEntityManager => {
+    await this.dataSource.createEntityManager().transaction(async transactionalEntityManager => {
       accountTypeORM = await this.accountRepository.save(accountTypeORM);
       if (accountTypeORM == null) {
         console.log('MoneyDeposited error');

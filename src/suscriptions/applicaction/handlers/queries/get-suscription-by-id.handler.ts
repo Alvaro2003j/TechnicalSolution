@@ -1,15 +1,15 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { getManager } from 'typeorm';
+import { DataSource } from 'typeorm';
 import { GetSuscriptionsDto } from '../../dtos/queries/get-suscriptions.dto';
 import { GetSuscriptionByIdQuery } from '../../queries/get-suscription-by-id.query';
 
 @QueryHandler(GetSuscriptionByIdQuery)
 export class GetSuscriptionByIdHandler implements IQueryHandler<GetSuscriptionByIdQuery>
 {
-    constructor() {}
+    constructor(private dataSource: DataSource) {}
 
     async execute(query: GetSuscriptionByIdQuery): Promise<any> {
-        const manager = getManager();
+        const manager = this.dataSource.createEntityManager();
         const sql = `
         SELECT
          s.id,
