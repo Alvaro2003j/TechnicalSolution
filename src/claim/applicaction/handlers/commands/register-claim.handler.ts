@@ -9,7 +9,6 @@ import { ClaimFactory } from 'src/claim/domain/factories/claim.factory';
 import { RegisterClaim } from '../../commands/open-claim.command';
 import { ClaimTypeORM } from 'src/claim/infrastructure/persistence/typeorm/entities/claim.typeorm';
 import {ClaimType } from 'src/claim/domain/value-object/claimtype.value';
-import { Currency } from 'src/common/domain/enums/currency.enum';
 import { ClaimMapper } from '../../mappers/claim.mapper';
 
 @CommandHandler(RegisterClaim)
