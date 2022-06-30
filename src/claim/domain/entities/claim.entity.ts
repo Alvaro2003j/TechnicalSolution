@@ -2,6 +2,7 @@ import { AggregateRoot, IEvent } from '@nestjs/cqrs';
 import { ClaimRegistered } from '../events/claim-registered.event';
 import { ClaimId } from '../value-object/claim-id.value'
 import { ClaimType } from '../value-object/claimtype.value';
+
 export class Claim extends AggregateRoot {
   private id: ClaimId;
   private Cost: number;
